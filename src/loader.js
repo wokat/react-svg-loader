@@ -25,12 +25,12 @@ function optimize(opts = {}) {
   const svgo = new Svgo(opts);
 
   return content =>
-    new Promise((resolve, reject) =>
-      svgo.optimize(
-        content,
-        ({ error, data }) => (error ? reject(error) : resolve(data))
-      )
-    );
+    new Promise((resolve, reject) => {
+      return svgo
+        .optimize(content)
+        .then(({ data }) => resolve(data))
+        .reject(({ error }) => reject(error));
+    });
 }
 
 // Babel Transform
