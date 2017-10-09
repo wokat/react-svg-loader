@@ -29,7 +29,7 @@ function optimize(opts = {}) {
       return svgo
         .optimize(content)
         .then(({ data }) => resolve(data))
-        .reject(({ error }) => reject(error));
+        .catch(({ error }) => reject(error));
     });
 }
 
